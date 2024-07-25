@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Ioc">
+      <UniqueIdentifier>{bb066468-e770-4199-ab24-c35a03dc11e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Log">
+      <UniqueIdentifier>{b9066d50-ee5e-4583-955b-57a70a4bb7b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Spa">
+      <UniqueIdentifier>{c51a16fc-1910-41dc-b6d0-d33b4941d2f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ccr">
+      <UniqueIdentifier>{5397221d-7e37-4c50-b2c6-df291df668e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="IocContainer.cpp">
+      <Filter>Source Files\Ioc</Filter>
+    </ClCompile>
+    <ClCompile Include="IocSingleton.cpp">
+      <Filter>Source Files\Ioc</Filter>
+    </ClCompile>
+    <ClCompile Include="LogEntry.cpp">
+      <Filter>Source Files\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="LogChannel.cpp">
+      <Filter>Source Files\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="LogTextFormatter.cpp">
+      <Filter>Source Files\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaRect.cpp">
+      <Filter>Source Files\Spa</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaVec2.cpp">
+      <Filter>Source Files\Spa</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaDimensions.cpp">
+      <Filter>Source Files\Spa</Filter>
+    </ClCompile>
+    <ClCompile Include="CcrGenericTaskQueue.cpp">
+      <Filter>Source Files\Ccr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChilCppUnitTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaToString.h">
+      <Filter>Source Files\Spa</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
