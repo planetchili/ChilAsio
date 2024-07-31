@@ -24,12 +24,18 @@
     <ClCompile Include="Boot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Asio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CliOptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Boot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Asio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

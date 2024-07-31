@@ -2,6 +2,7 @@
 #include <Core/src/log/Log.h>
 #include "Boot.h"
 #include "CliOptions.h"
+#include "Asio.h"
 
 using namespace chil;
 using namespace std::string_literals;
