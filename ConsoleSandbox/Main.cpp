@@ -73,16 +73,16 @@ int main()
 			}
 		}
 
-		std::cout << "Content:\n";
+		std::cout << "\n\nContent:\n" << std::endl;
 		asio_error ec;
+		std::string fixedBuffer(256, ' ');
 		while (!ec) {
-			std::string fixedBuffer(256, ' ');
 			const auto nBytes = as::read(socket, as::buffer(fixedBuffer), ec);
 			if (ec && ec != as::error::eof) {
 				throw boost::system::system_error{ ec };
 			}
 			fixedBuffer.resize(nBytes);
-			std::cout << fixedBuffer << std::endl;
+			std::cout << fixedBuffer;
 		}
 
 		std::cout << "\n\nTransfer complete!" << std::endl;
