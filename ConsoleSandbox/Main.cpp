@@ -20,9 +20,10 @@ int main()
 		return *code;
 	}
 	Boot();
+	auto& opts = opt::Get();
 
 	try {
-		url::url url = url::url_view{ "https://www.boost.org/LICENSE_1_0.txt" };
+		url::url url = url::url_view{ *opts.url };
 
 		as::io_context ioctx;
 
