@@ -3,8 +3,6 @@
 #include "Boot.h"
 #include "CliOptions.h"
 #include "Asio.h"
-#include <boost/url.hpp>
-#include <boost/asio/ssl.hpp>
 #include <sstream>
 
 using namespace chil;
