@@ -62,9 +62,11 @@ int main()
 		as::streambuf recvBuf;
 		
 		{
-			const auto nBytes = as::read_until(socket, recvBuf, "\r\n\r\n");
-			std::string header(nBytes, ' ');
-			std::istream{ &recvBuf }.read(header.data(), nBytes);
+			std::string header;
+			header.resize_and_overwrite(
+				as::read_until(socket, recvBuf, "\r\n\r\n"),
+				[&](char* p, size_t nBytes) { std::istream{ &recvBuf }.read(p, nBytes); return nBytes; }
+			);
 			std::cout.write(header.data(), header.size());
 		}
 
