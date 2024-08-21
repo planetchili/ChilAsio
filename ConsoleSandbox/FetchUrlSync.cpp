@@ -55,7 +55,9 @@ std::vector<Response> FetchUrlsSync(std::vector<std::string> urls)
 
 		// receive content and store
 		std::ostringstream contentStream;
-		contentStream << &recvBuf;
+		if (recvBuf.size() > 0) {
+			contentStream << &recvBuf;
+		}
 
 		asio_error ec;
 		std::string fixedBuffer(256, ' ');
