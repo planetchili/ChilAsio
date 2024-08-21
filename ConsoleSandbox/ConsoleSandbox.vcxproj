@@ -85,6 +85,7 @@
     <ClCompile Include="Asio.cpp" />
     <ClCompile Include="Boot.cpp" />
     <ClCompile Include="CliOptions.cpp" />
+    <ClCompile Include="FetchUrlSync.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +97,8 @@
     <ClInclude Include="Asio.h" />
     <ClInclude Include="Boot.h" />
     <ClInclude Include="CliOptions.h" />
+    <ClInclude Include="FetchUrlSync.h" />
+    <ClInclude Include="Response.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

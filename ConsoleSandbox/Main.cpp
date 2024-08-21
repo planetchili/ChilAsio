@@ -2,15 +2,12 @@
 #include <Core/src/log/Log.h>
 #include "Boot.h"
 #include "CliOptions.h"
-#include "Asio.h"
-#include <sstream>
+#include <ranges>
+#include "FetchUrlSync.h"
 
 using namespace chil;
-using namespace std::string_literals;
-namespace as = boost::asio;
-namespace url = boost::urls;
-using as::ip::tcp;
-using asio_error = boost::system::error_code;
+namespace rn = std::ranges;
+namespace vi = rn::views;
 
 int main()
 {
@@ -21,70 +18,11 @@ int main()
 	auto& opts = opt::Get();
 
 	try {
-		url::url url = url::url_view{ *opts.url };
-
-		as::io_context ioctx;
-
-		tcp::resolver resolver{ ioctx };
-
-		const std::string server = url.host();
-		const std::string path = url.path();
-
-		auto endpoints = resolver.resolve(tcp::resolver::query{ server, "https" });
-		std::cout << "Resolved url!" << std::endl;
-
-		for (auto& e : endpoints) {
-			std::cout << e.endpoint().address().to_string() << std::endl;
+		const auto responses = FetchUrlsSync(*opts.url);
+		for (auto&& [i, r] : vi::enumerate(responses)) {
+			std::cout << ">>> URL (" << i << ") [" << r.url << "] <<<\n======= \n%% Header %%\n"
+				<< r.header << "%% Content %%\n" << r.content << "\n\n" << std::endl;
 		}
-
-		as::ssl::context sslContext{ as::ssl::context::sslv23 };
-		as::ssl::stream<tcp::socket> socket{ ioctx, sslContext };
-
-		as::connect(socket.lowest_layer(), endpoints);
-		std::cout << "Connected to server!" << std::endl;
-
-		socket.handshake(as::ssl::stream_base::client);
-		std::cout << "Handshake successful!" << std::endl;
-
-		std::string request;
-		{
-			std::ostringstream request_stream;
-			request_stream << "GET " << path << " HTTP/1.0\r\n";
-			request_stream << "Host: " << server << "\r\n";
-			request_stream << "Accept: */*\r\n";
-			request_stream << "Connection: close\r\n\r\n";
-			request = request_stream.str();
-		}
-
-		as::write(socket, as::buffer(request));
-		std::cout << "Request sent!" << std::endl;
-
-		as::streambuf recvBuf;
-		
-		{
-			std::string header;
-			header.resize_and_overwrite(
-				as::read_until(socket, recvBuf, "\r\n\r\n"),
-				[&](char* p, size_t nBytes) { std::istream{ &recvBuf }.read(p, nBytes); return nBytes; }
-			);
-			std::cout.write(header.data(), header.size());
-		}
-
-		std::cout << "\n\nContent:\n" << std::endl;
-		std::cout << &recvBuf;
-
-		asio_error ec;
-		std::string fixedBuffer(256, ' ');
-		while (!ec) {
-			const auto nBytes = as::read(socket, as::buffer(fixedBuffer), ec);
-			if (ec && ec != as::error::eof) {
-				throw boost::system::system_error{ ec };
-			}
-			fixedBuffer.resize(nBytes);
-			std::cout << fixedBuffer;
-		}
-
-		std::cout << "\n\nTransfer complete!" << std::endl;
 	}
 	catch (const std::exception& e) {
 		std::cout << typeid(e).name() << ">" << e.what();

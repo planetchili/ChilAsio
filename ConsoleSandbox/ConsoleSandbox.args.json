@@ -7,6 +7,14 @@
       "Command": "--url https://en.wikipedia.org/wiki/Foot_fetishism"
     },
     {
+      "Id": "84a359e9-19e4-4754-b655-e617cb33216d",
+      "Command": "--url https://www.boost.org/LICENSE_1_0.txt"
+    },
+    {
+      "Id": "70525b9b-9fb4-4899-9b7b-33a263396cbc",
+      "Command": "--url https://en.cppreference.com/w/cpp/string/basic_string/resize_and_overwrite"
+    },
+    {
       "Id": "23a656b7-99a5-47b2-888e-c6afedbe9657",
       "Command": "--log-level warn"
     },

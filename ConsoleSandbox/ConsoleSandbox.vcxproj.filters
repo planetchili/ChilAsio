@@ -27,6 +27,9 @@
     <ClCompile Include="Asio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FetchUrlSync.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CliOptions.h">
@@ -36,6 +39,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Asio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Response.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FetchUrlSync.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
