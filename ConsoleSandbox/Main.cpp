@@ -60,18 +60,17 @@ int main()
 		std::cout << "Request sent!" << std::endl;
 
 		as::streambuf recvBuf;
-		std::istream is{ &recvBuf };
-		as::read_until(socket, recvBuf, "\r\n\r\n");
 		
 		{
-			std::string headerLine;
-			std::cout << "Received header:\n";
-			while (std::getline(is, headerLine)) {
-				std::cout << headerLine << std::endl;
-			}
+			const auto nBytes = as::read_until(socket, recvBuf, "\r\n\r\n");
+			std::string header(nBytes, ' ');
+			std::istream{ &recvBuf }.read(header.data(), nBytes);
+			std::cout.write(header.data(), header.size());
 		}
 
 		std::cout << "\n\nContent:\n" << std::endl;
+		std::cout << &recvBuf;
+
 		asio_error ec;
 		std::string fixedBuffer(256, ' ');
 		while (!ec) {
