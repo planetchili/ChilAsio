@@ -5,6 +5,7 @@
 #include <ranges>
 #include <chrono>
 #include "FetchUrlSync.h"
+#include "FetchUrlAsyncCallbacks.h"
 
 using namespace chil;
 namespace rn = std::ranges;
@@ -21,7 +22,7 @@ int main()
 
 	try {
 		const auto start = clk::now();
-		const auto responses = FetchUrlsSync(*opts.url);
+		const auto responses = FetchUrlsAsyncCallbacks(*opts.url);
 		std::cout << std::format("Fetching {} urls took {:%S}s\n\n", opts.url->size(), clk::now() - start);
 		for (auto&& [i, r] : vi::enumerate(responses)) {
 			std::cout << ">>> URL (" << i << ") [" << r.url << "] <<<\n======= \n%% Header %%\n"

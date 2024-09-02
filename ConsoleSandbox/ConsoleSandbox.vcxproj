@@ -85,6 +85,7 @@
     <ClCompile Include="Asio.cpp" />
     <ClCompile Include="Boot.cpp" />
     <ClCompile Include="CliOptions.cpp" />
+    <ClCompile Include="FetchUrlAsyncCallbacks.cpp" />
     <ClCompile Include="FetchUrlSync.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -97,6 +98,7 @@
     <ClInclude Include="Asio.h" />
     <ClInclude Include="Boot.h" />
     <ClInclude Include="CliOptions.h" />
+    <ClInclude Include="FetchUrlAsyncCallbacks.h" />
     <ClInclude Include="FetchUrlSync.h" />
     <ClInclude Include="Response.h" />
   </ItemGroup>
