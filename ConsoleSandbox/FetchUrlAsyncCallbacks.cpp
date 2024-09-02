@@ -73,6 +73,7 @@ std::vector<Response> FetchUrlsAsyncCallbacks(std::vector<std::string> urls)
 																		if (err && err != as::error::eof) {
 																			fail = err.what();
 																			ioctx.stop();
+																			pReadCtx->ReadSome = {};
 																		}
 																		pReadCtx->fixedBuffer.resize(nBytes);
 																		pReadCtx->contentStream << pReadCtx->fixedBuffer;
@@ -81,6 +82,7 @@ std::vector<Response> FetchUrlsAsyncCallbacks(std::vector<std::string> urls)
 																		}
 																		else {
 																			response.content = pReadCtx->contentStream.str();
+																			pReadCtx->ReadSome = {};
 																		}
 																	};
 
