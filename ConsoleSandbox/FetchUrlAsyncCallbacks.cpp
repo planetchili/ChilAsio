@@ -31,19 +31,13 @@ std::vector<Response> FetchUrlsAsyncCallbacks(std::vector<std::string> urls)
 		resolver.async_resolve(tcp::resolver::query{ url.host(), "https" },
 			[&](const asio_error& err, tcp::resolver::iterator endpIter) {
 				if (!err) {
-					std::cout << "RESOLVED!" << std::endl;
-
 					auto pSocket = std::make_shared<as::ssl::stream<tcp::socket>>(ioctx, sslContext);
 					as::async_connect(pSocket->lowest_layer(), endpIter,
 						[&, pSocket](const asio_error& err, tcp::resolver::iterator) {
 							if (!err) {
-								std::cout << "CONNECTED!" << std::endl;
-
 								pSocket->async_handshake(as::ssl::stream_base::client, 
 									[&, pSocket](const asio_error& err) {
 										if (!err) {
-											std::cout << "SHOOK!" << std::endl;
-
 											// send GET request
 											url::url url = url::url_view{ urlString };
 											std::ostringstream request_stream;
@@ -54,14 +48,10 @@ std::vector<Response> FetchUrlsAsyncCallbacks(std::vector<std::string> urls)
 											as::async_write(*pSocket, as::buffer(request_stream.str()),
 												[&, pSocket](const asio_error& err, std::size_t) {
 													if (!err) {
-														std::cout << "REQUESTED!" << std::endl;
-
 														auto pRecvBuf = std::make_shared<as::streambuf>();
 														as::async_read_until(*pSocket, *pRecvBuf, "\r\n\r\n",
 															[&, pSocket, pRecvBuf](const asio_error& err, std::size_t nBytes) {
 																if (!err) {
-																	std::cout << "RECEIVED HEADER! " << nBytes << std::endl;
-
 																	response.header.resize_and_overwrite(nBytes,
 																		[&](char* p, size_t) { std::istream{ pRecvBuf.get() }.read(p, nBytes); return nBytes; }
 																	);
@@ -90,8 +80,6 @@ std::vector<Response> FetchUrlsAsyncCallbacks(std::vector<std::string> urls)
 																			as::async_read(*pReadCtx->pSocket, as::buffer(pReadCtx->fixedBuffer), pReadCtx->ReadSome);
 																		}
 																		else {
-																			std::cout << "RECEIVED CONTENT! " << std::endl;
-
 																			response.content = pReadCtx->contentStream.str();
 																		}
 																	};

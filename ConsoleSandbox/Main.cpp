@@ -21,8 +21,12 @@ int main()
 	auto& opts = opt::Get();
 
 	try {
+		std::vector<Response> responses;
 		const auto start = clk::now();
-		const auto responses = FetchUrlsAsyncCallbacks(*opts.url);
+		switch (*opts.mode) {
+		case Mode::AsyncCallbacks: responses = FetchUrlsAsyncCallbacks(*opts.url); break;
+		default:case Mode::Sync: responses = FetchUrlsSync(*opts.url); break;
+		}
 		std::cout << std::format("Fetching {} urls took {:%S}s\n\n", opts.url->size(), clk::now() - start);
 		for (auto&& [i, r] : vi::enumerate(responses)) {
 			std::cout << ">>> URL (" << i << ") [" << r.url << "] <<<\n======= \n%% Header %%\n"
