@@ -6,6 +6,7 @@
 #include <chrono>
 #include "FetchUrlSync.h"
 #include "FetchUrlAsyncCallbacks.h"
+#include "FetchUrlAsyncCoro.h"
 
 using namespace chil;
 namespace rn = std::ranges;
@@ -25,6 +26,7 @@ int main()
 		const auto start = clk::now();
 		switch (*opts.mode) {
 		case Mode::AsyncCallbacks: responses = FetchUrlsAsyncCallbacks(*opts.url); break;
+		case Mode::AsyncCoro: responses = FetchUrlAsyncCoro(*opts.url); break;
 		default:case Mode::Sync: responses = FetchUrlsSync(*opts.url); break;
 		}
 		std::cout << std::format("Fetching {} urls took {:%S}s\n\n", opts.url->size(), clk::now() - start);

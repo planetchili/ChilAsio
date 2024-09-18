@@ -6,6 +6,7 @@ enum class Mode
 {
 	Sync,
 	AsyncCallbacks,
+	AsyncCoro,
 };
 
 namespace cli
