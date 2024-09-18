@@ -3,6 +3,10 @@
   "Id": "a86c283f-3417-4465-8b87-f9503e3ba2fc",
   "Items": [
     {
+      "Id": "fb179165-0724-4935-9afa-f967a9fe39fa",
+      "Command": "--mode AsyncCoro"
+    },
+    {
       "Id": "286cf530-e91c-4a45-8bfb-a5316330c1c5",
       "Command": "--mode AsyncCallbacks"
     },
